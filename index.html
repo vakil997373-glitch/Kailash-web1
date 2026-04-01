@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SarkariUpdate.in — Vacancy | Yojana | Results</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Rajdhani:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0a1628;
+      --navy2: #112240;
+      --saffron: #e07b20;
+      --saffron2: #f5a623;
+      --green: #138808;
+      --green2: #1aab0a;
+      --white: #ffffff;
+      --off: #f4f6fb;
+      --muted: #6b7a99;
+      --border: #dde3f0;
+      --red: #c0392b;
+      --blue: #1565c0;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--off); color: var(--navy); font-family: 'Noto Sans', sans-serif; font-size: 15px; line-height: 1.7; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      padding: 6px 0;
+      overflow: hidden;
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ticker { overflow: hidden; flex: 1; }
+    .ticker-wrap {
+      display: flex;
+      gap: 60px;
+      animation: ticker 30s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-item { color: var(--saffron2); font-size: 11px; letter-spacing: 0.5px; }
+    .ticker-item span { color: white; margin-left: 4px; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .topbar-date { font-size: 11px; white-space: nowrap; margin-left: 20px; }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .header-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--saffron), var(--saffron2));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; font-weight: 700; color: white;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .logo-text { }
+    .logo-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1;
+    }
+    .logo-name span { color: var(--saffron2); }
+    .logo-sub { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; }
+
+    .header-search {
+      flex: 1;
+      max-width: 400px;
+      display: flex;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .header-search input {
+      flex: 1;
+      padding: 9px 14px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 13px;
+      outline: none;
+      font-family: 'Noto Sans', sans-serif;
+    }
+    .header-search input::placeholder { color: rgba(255,255,255,0.4); }
+    .header-search button {
+      padding: 9px 16px;
+      background: var(--saffron);
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .header-search button:hover { background: var(--saffron2); }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy2);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    nav a {
+      display: block;
+      padding: 11px 18px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    nav a:hover, nav a.active { color: var(--saffron2); border-bottom-color: var(--saffron2); }
+
+    /* ── TRICOLOR BAR ── */
+    .tricolor { height: 4px; background: linear-gradient(to right, #FF9933 33%, white 33%, white 66%, #138808 66%); }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1200px;
+      margin: 28px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 24px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .sec-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .sec-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sec-title::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: var(--saffron);
+      border-radius: 2px;
+    }
+    .sec-more {
+      font-size: 12px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .sec-more:hover { text-decoration: underline; }
+
+    /* ── FILTER TABS ── */
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .ftab {
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .ftab:hover, .ftab.active { background: var(--navy); color: white; border-color: var(--navy); }
+    .ftab.active.v { background: var(--blue); border-color: var(--blue); }
+    .ftab.active.y { background: var(--green); border-color: var(--green); }
+    .ftab.active.r { background: var(--red); border-color: var(--red); }
+
+    /* ── POST CARDS ── */
+    .posts-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .post-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: start;
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .post-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); transform: translateY(-1px); }
+    .post-card.hidden { display: none; }
+
+    .card-badge {
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .badge-vacancy { background: #e8f0fe; color: var(--blue); }
+    .badge-yojana  { background: #e8f5e9; color: var(--green); }
+    .badge-result  { background: #fce8e6; color: var(--red); }
+    .badge-admit   { background: #fff3e0; color: #e65100; }
+    .badge-answer  { background: #f3e5f5; color: #6a1b9a; }
+
+    .card-body { }
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+    .card-title-hi {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .card-meta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .card-meta span { display: flex; align-items: center; gap: 3px; }
+
+    .card-action { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+    .btn-apply {
+      padding: 6px 14px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+      font-family: 'Rajdhani', sans-serif;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-apply:hover { background: #0d47a1; }
+    .btn-apply.green { background: var(--green); }
+    .btn-apply.green:hover { background: #0a6b04; }
+    .btn-apply.red { background: var(--red); }
+    .btn-apply.red:hover { background: #922b21; }
+    .btn-apply.orange { background: var(--saffron); }
+
+    .new-tag {
+      background: var(--red);
+      color: white;
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
+
+    /* ── FEATURED CARDS ── */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .feat-card {
+      background: white;
+      border-radius: 10px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--blue);
+      transition: box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .feat-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+    .feat-card.vacancy { border-top-color: var(--blue); }
+    .feat-card.yojana  { border-top-color: var(--green); }
+    .feat-card.result  { border-top-color: var(--red); }
+    .feat-icon { font-size: 2rem; margin-bottom: 10px; }
+    .feat-count {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .feat-label { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .feat-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+    /* ── SIDEBAR ── */
+    aside { display: flex; flex-direction: column; gap: 20px; }
+
+    .widget {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .widget-head {
+      background: var(--navy);
+      color: white;
+      padding: 10px 16px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .widget-body { padding: 14px 16px; }
+
+    /* Important Dates */
+    .date-list { list-style: none; }
+    .date-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+      gap: 10px;
+      font-size: 12px;
+    }
+    .date-list li:last-child { border-bottom: none; }
+    .date-list .exam-name { color: var(--navy); font-weight: 500; flex: 1; }
+    .date-list .exam-date { color: var(--saffron); font-weight: 700; white-space: nowrap; font-family: 'Rajdhani', sans-serif; }
+
+    /* Quick Links */
+    .quick-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .quick-link {
+      padding: 10px 8px;
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--navy);
+      transition: all 0.2s;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .quick-link:hover { background: var(--navy); color: white; }
+    .quick-link .ql-icon { font-size: 1.3rem; display: block; margin-bottom: 4px; }
+
+    /* States */
+    .state-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .state-btn {
+      padding: 7px;
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .state-btn:hover { background: var(--saffron); color: white; border-color: var(--saffron); }
+
+    /* Alert box */
+    .alert-box {
+      background: linear-gradient(135deg, #fff8e1, #fff3cd);
+      border: 1px solid #ffc107;
+      border-left: 4px solid #ffc107;
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .alert-box strong { color: var(--navy); display: block; margin-bottom: 4px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      margin-top: 50px;
+      padding: 50px 20px 20px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand p { font-size: 13px; line-height: 1.7; margin-top: 12px; }
+    .footer-col h4 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--saffron2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul a { text-decoration: none; font-size: 13px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--saffron2); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+    .anim { opacity: 0; }
+    .anim.in { animation: fadeUp 0.5s ease forwards; }
+
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+      .featured-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .featured-grid { grid-template-columns: 1fr; }
+      .post-card { grid-template-columns: 1fr; }
+      .card-action { flex-direction: row; align-items: center; }
+      .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; }
+      .header-search { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="ticker">
+      <div class="ticker-wrap">
+        <span class="ticker-item">🔴 NEW<span>SSC CGL 2025 Notification Out</span></span>
+        <span class="ticker-item">🟢 NEW<span>PM Awas Yojana Registration Open</span></span>
+        <span class="ticker-item">🔵 NEW<span>UPSC CSE Result 2024 Declared</span></span>
+        <span class="ticker-item">🔴 NEW<span>Railway Group D Vacancy 2025</span></span>
+        <span class="ticker-item">🟢 NEW<span>Ayushman Bharat Card Apply Now</span></span>
+        <span class="ticker-item">🔴 NEW<span>SSC CGL 2025 Notification Out</span></span>
+        <span class="ticker-item">🟢 NEW<span>PM Awas Yojana Registration Open</span></span>
+        <span class="ticker-item">🔵 NEW<span>UPSC CSE Result 2024 Declared</span></span>
+        <span class="ticker-item">🔴 NEW<span>Railway Group D Vacancy 2025</span></span>
+        <span class="ticker-item">🟢 NEW<span>Ayushman Bharat Card Apply Now</span></span>
+      </div>
+    </div>
+    <span class="topbar-date" id="dateDisplay"></span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-main">
+    <a href="#" class="logo">
+      <div class="logo-icon">S</div>
+      <div class="logo-text">
+        <div class="logo-name">Sarkari<span>Update</span></div>
+        <div class="logo-sub">Vacancy · Yojana · Results</div>
+      </div>
+    </a>
+    <div class="header-search">
+      <input type="text" placeholder="Search vacancy, yojana, result..."/>
+      <button>🔍</button>
+    </div>
+  </div>
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="active">🏠 Home</a>
+      <a href="#" onclick="filterAll('vacancy',this)">💼 Vacancy</a>
+      <a href="#" onclick="filterAll('yojana',this)">🏛️ Yojana</a>
+      <a href="#" onclick="filterAll('result',this)">📋 Results</a>
+      <a href="#" onclick="filterAll('admit',this)">🪪 Admit Card</a>
+      <a href="#" onclick="filterAll('answer',this)">📝 Answer Key</a>
+      <a href="#">📅 Exam Calendar</a>
+      <a href="#">📞 Contact</a>
+    </div>
+  </nav>
+</header>
+<div class="tricolor"></div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <main>
+
+    <!-- ALERT -->
+    <div class="alert-box anim">
+      <strong>⚠️ Important Notice / महत्वपूर्ण सूचना</strong>
+      Always verify information from official government websites before applying. Apply karne se pehle official website zaroor check karein.
+    </div>
+
+    <!-- FEATURED STATS -->
+    <div class="featured-grid anim">
+      <div class="feat-card vacancy">
+        <div class="feat-icon">💼</div>
+        <div class="feat-count">148</div>
+        <div class="feat-label">Active Vacancies</div>
+        <div class="feat-sub">सक्रिय भर्तियाँ</div>
+      </div>
+      <div class="feat-card yojana">
+        <div class="feat-icon">🏛️</div>
+        <div class="feat-count">63</div>
+        <div class="feat-label">Govt. Yojanas</div>
+        <div class="feat-sub">सरकारी योजनाएं</div>
+      </div>
+      <div class="feat-card result">
+        <div class="feat-icon">📋</div>
+        <div class="feat-count">29</div>
+        <div class="feat-label">Recent Results</div>
+        <div class="feat-sub">हाल के परिणाम</div>
+      </div>
+    </div>
+
+    <!-- FILTER TABS -->
+    <div class="filter-tabs anim">
+      <button class="ftab active" onclick="filter('all',this)">🗂️ All / सभी</button>
+      <button class="ftab" onclick="filter('vacancy',this)">💼 Vacancy</button>
+      <button class="ftab" onclick="filter('yojana',this)">🏛️ Yojana</button>
+      <button class="ftab" onclick="filter('result',this)">📋 Result</button>
+      <button class="ftab" onclick="filter('admit',this)">🪪 Admit Card</button>
+      <button class="ftab" onclick="filter('answer',this)">📝 Answer Key</button>
+    </div>
+
+    <!-- POSTS LIST -->
+    <div class="posts-list" id="postsList">
+
+      <!-- VACANCY 1 -->
+      <div class="post-card anim" data-cat="vacancy">
+        <div><span class="card-badge badge-vacancy">Vacancy</span></div>
+        <div class="card-body">
+          <div class="card-title">SSC CGL 2025 — Combined Graduate Level Recruitment <span class="new-tag">NEW</span></div>
+          <div class="card-title-hi">एसएससी सीजीएल 2025 — स्नातक स्तरीय भर्ती</div>
+          <div class="card-meta">
+            <span>📌 Posts: 17,727</span>
+            <span>🎓 Graduate</span>
+            <span>📅 Last Date: 31 May 2025</span>
+            <span>💰 Pay: ₹25,500–81,100</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#" class="btn-apply">Apply Now</a>
+          <a href="#" class="btn-apply orange">Notification</a>
+        </div>
+      </div>
+
+      <!-- VACANCY 2 -->
+      <div class="post-card anim" data-cat="vacancy">
+        <div><span class="card-badge badge-vacancy">Vacancy</span></div>
+        <div class="card-body">
+          <div class="card-title">Railway RRB Group D Recruitment 2025 — 32,438 Posts <span class="new-tag">NEW</span></div>
+          <div class="card-title-hi">रेलवे आरआरबी ग्रुप डी भर्ती 2025</div>
+          <div class="card-meta">
+            <span>📌 Posts: 32,438</span>
+            <span>🎓 10th Pass</span>
+            <span>📅 Last Date: 15 Jun 2025</span>
+            <span>💰 Pay: ₹18,000–56,900</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#" class="btn-apply">Apply Now</a>
+          <a href="#" class="btn-apply orange">Notification</a>
+        </div>
+      </div>
+
+      <!-- YOJANA 1 -->
+      <div class="post-card anim" data-cat="yojana">
+        <div><span class="card-badge badge-yojana">Yojana</span></div>
+        <div class="card-body">
+          <div class="card-title">PM Awas Yojana (Gramin) 2025 — Apply for Free House <span class="new-tag">NEW</span></div>
+          <div class="card-title-hi">पीएम आवास योजना (ग्रामीण) 2025 — मुफ्त घर के लिए आवेदन करें</div>
+          <div class="card-meta">
+            <span>🏠 Free Housing</span>
+            <span>👥 BPL Families</span>
+            <span>📅 Registration Open</span>
+            <span>💰 Benefit: ₹1.20 Lakh</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#" class="btn-apply green">Apply</a>
+          <a href="#" class="btn-apply orange">Details</a>
+        </div>
+      </div>
+
+      <!-- RESULT 1 -->
+      <div class="post-card anim" data-cat="result">
+        <div><span class="card-badge badge-result">Result</span></div>
+        <div class="card-body">
+          <div class="card-title">UPSC Civil Services (IAS) Final Result 2024 Declared</div>
+          <div class="card-title-hi">यूपीएससी सिविल सेवा (आईएएस) अंतिम परिणाम 2024 घोषित</div>
+          <div class="card-meta">
+            <span>📋 1,016 Selected</span>
+            <span>🏛️ UPSC</span>
+            <span>📅 Declared: Apr 2025</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#" class="btn-apply red">View Result</a>
+          <a href="#" class="btn-apply orange">Cutoff</a>
+        </div>
+      </div>
+
+      <!-- ADMIT CARD 1 -->
+      <div class="post-card anim" data-cat="admit">
+        <div><span class="card-badge badge-admit">Admit Card</span></div>
+        <div class="card-body">
+          <div class="card-title">SSC CHSL 2025 Tier-1 Admit Card Download <span class="new-tag">NEW</span></div>
+          <div class="card-title-hi">एसएससी सीएचएसएल 2025 टियर-1 एडमिट कार्ड डाउनलोड</div>
+          <div class="card-meta">
+            <span>📅 Exam: 10–25 May 2025</span>
+            <span>🏛️ SSC</span>
+            <span>📌 All India</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#" class="btn-apply orange">Download</a>
+        </div>
+      </div>
+
+      <!-- YOJANA 2 -->
+      <div class="post-card anim" data-cat="yojana">
+        <div><span class="card-badge badge-yojana">Yojana</span></div>
+        <div class="card-body">
+          <div class="card-title">Ayushman Bharat Pradhan Mantri Jan Arogya Yojana — Free Health Card</div>
+          <div class="card-title-hi">आयुष्मान भारत प्रधानमंत्री जन आरोग्य योजना — मुफ्त स्वास्थ्य कार्ड</div>
+          <div class="card-meta">
+            <span>🏥 Free Treatment up to ₹5 Lakh</span>
+            <span>👥 10 Crore+ Families</span>
+            <span>📅 Always Open</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#" class="btn-apply green">Apply</a>
+          <a href="#" class="btn-apply orange">Eligibility</a>
+        </div>
+      </div>
+
+      <!-- VACANCY 3 -->
+      <div class="post-card anim" data-cat="vacancy">
+        <div><span class="card-badge badge-vacancy">Vacancy</span></div>
+        <div class="card-body">
+          <div class="card-title">IBPS PO 2025 — Bank PO Recruitment 4,455 Posts</div>
+          <div class="card-title-hi">आईबीपीएस पीओ 2025 — बैंक पीओ भर्ती 4,455 पद</div>
+          <div class="card-meta">
+            <span>📌 Posts: 4,455</span>
+            <span>🎓 Graduate</span>
+            <span>📅 Last Date: 20 May 2025</span>
+            <span>💰 Pay: ₹36,000–63,840</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#" class="btn-apply">Apply Now</a>
+          <a href="#" class="btn-apply orange">Syllabus</a>
+        </div>
+      </div>
+
+      <!-- ANSWER KEY -->
+      <div class="post-card anim" data-cat="answer">
+        <div><span class="card-badge badge-answer">Answer Key</span></div>
+        <div class="card-body">
+          <div class="card-title">SSC MTS 2024 Answer Key Released — Raise Objection</div>
+          <div class="card-title-hi">एसएससी एमटीएस 2024 उत्तर कुंजी जारी — आपत्ति दर्ज करें</div>
+          <div class="card-meta">
+            <span>📅 Objection Till: 5 May 2025</span>
+            <span>🏛️ SSC</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#" class="btn-apply orange">Answer Key</a>
+        </div>
+      </div>
+
+      <!-- RESULT 2 -->
+      <div class="post-card anim" data-cat="result">
+        <div><span class="card-badge badge-result">Result</span></div>
+        <div class="card-body">
+          <div class="card-title">Bihar Police Constable Result 2025 Declared — Check Now</div>
+          <div class="card-title-hi">बिहार पुलिस कांस्टेबल परिणाम 2025 घोषित — अभी देखें</div>
+          <div class="card-meta">
+            <span>📋 21,391 Posts</span>
+            <span>🏛️ BPSSC</span>
+            <span>📅 Declared: Mar 2025</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#" class="btn-apply red">View Result</a>
+        </div>
+      </div>
+
+      <!-- YOJANA 3 -->
+      <div class="post-card anim" data-cat="yojana">
+        <div><span class="card-badge badge-yojana">Yojana</span></div>
+        <div class="card-body">
+          <div class="card-title">Kisan Samman Nidhi Yojana — ₹6000/year for Farmers <span class="new-tag">NEW</span></div>
+          <div class="card-title-hi">किसान सम्मान निधि योजना — किसानों के लिए ₹6000/वर्ष</div>
+          <div class="card-meta">
+            <span>🌾 Farmers Only</span>
+            <span>💰 ₹2000 per Installment</span>
+            <span>📅 Registration Open</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#" class="btn-apply green">Register</a>
+          <a href="#" class="btn-apply orange">Status</a>
+        </div>
+      </div>
+
+      <div id="noPosts" style="display:none; text-align:center; padding:40px; color:var(--muted); font-size:1rem;">
+        Is category mein koi post nahi mili. / No posts found in this category.
+      </div>
+
+    </div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside>
+
+    <!-- Important Dates -->
+    <div class="widget anim">
+      <div class="widget-head">📅 Important Dates / महत्वपूर्ण तिथियां</div>
+      <div class="widget-body">
+        <ul class="date-list">
+          <li><span class="exam-name">SSC CGL 2025</span><span class="exam-date">31 May</span></li>
+          <li><span class="exam-name">IBPS PO 2025</span><span class="exam-date">20 May</span></li>
+          <li><span class="exam-name">RRB Group D</span><span class="exam-date">15 Jun</span></li>
+          <li><span class="exam-name">UPSC CSE 2025</span><span class="exam-date">22 Jun</span></li>
+          <li><span class="exam-name">SSC CHSL Exam</span><span class="exam-date">10 May</span></li>
+          <li><span class="exam-name">NDA 2025</span><span class="exam-date">14 Sep</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="widget anim">
+      <div class="widget-head">🔗 Quick Links / त्वरित लिंक</div>
+      <div class="widget-body">
+        <div class="quick-links">
+          <a href="#" class="quick-link"><span class="ql-icon">🏛️</span>UPSC</a>
+          <a href="#" class="quick-link"><span class="ql-icon">🚂</span>Railway</a>
+          <a href="#" class="quick-link"><span class="ql-icon">📋</span>SSC</a>
+          <a href="#" class="quick-link"><span class="ql-icon">🏦</span>Banking</a>
+          <a href="#" class="quick-link"><span class="ql-icon">👮</span>Police</a>
+          <a href="#" class="quick-link"><span class="ql-icon">🎓</span>Teaching</a>
+          <a href="#" class="quick-link"><span class="ql-icon">⚕️</span>Health</a>
+          <a href="#" class="quick-link"><span class="ql-icon">🌾</span>Krishi</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- State Filter -->
+    <div class="widget anim">
+      <div class="widget-head">🗺️ State Jobs / राज्य भर्ती</div>
+      <div class="widget-body">
+        <div class="state-grid">
+          <button class="state-btn">UP</button>
+          <button class="state-btn">Bihar</button>
+          <button class="state-btn">MP</button>
+          <button class="state-btn">Rajasthan</button>
+          <button class="state-btn">Delhi</button>
+          <button class="state-btn">Maharashtra</button>
+          <button class="state-btn">Punjab</button>
+          <button class="state-btn">Haryana</button>
+          <button class="state-btn">Gujarat</button>
+          <button class="state-btn">All States</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="widget anim">
+      <div class="widget-head">🔔 Get Alerts / अलर्ट पाएं</div>
+      <div class="widget-body">
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Nayi vacancy aur yojana ki notification seedha apne email pe paayein.</p>
+        <input type="text" placeholder="Aapka naam / Your Name" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:5px;font-size:13px;margin-bottom:8px;outline:none;"/>
+        <input type="email" placeholder="Email address" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:5px;font-size:13px;margin-bottom:10px;outline:none;"/>
+        <button style="width:100%;padding:10px;background:var(--saffron);color:white;border:none;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:0.5px;">Subscribe / सदस्यता लें 🔔</button>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;color:white;">Sarkari<span style="color:var(--saffron2);">Update</span></div>
+      <p>India ki sabse trusted government job aur yojana update website. Sahi aur samay par jaankari paayein.<br/><br/>भारत की सबसे विश्वसनीय सरकारी नौकरी और योजना अपडेट वेबसाइट।</p>
+    </div>
+    <div class="footer-col">
+      <h4>Vacancies</h4>
+      <ul>
+        <li><a href="#">UPSC Jobs</a></li>
+        <li><a href="#">SSC Jobs</a></li>
+        <li><a href="#">Railway Jobs</a></li>
+        <li><a href="#">Banking Jobs</a></li>
+        <li><a href="#">State Govt Jobs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Yojana</h4>
+      <ul>
+        <li><a href="#">PM Awas Yojana</a></li>
+        <li><a href="#">Ayushman Bharat</a></li>
+        <li><a href="#">Kisan Yojana</a></li>
+        <li><a href="#">Ujjwala Yojana</a></li>
+        <li><a href="#">All Yojanas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Results</h4>
+      <ul>
+        <li><a href="#">UPSC Results</a></li>
+        <li><a href="#">SSC Results</a></li>
+        <li><a href="#">Railway Results</a></li>
+        <li><a href="#">Bank Results</a></li>
+        <li><a href="#">All Results</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 SarkariUpdate — All Rights Reserved</span>
+    <span>Disclaimer: Verify all info from official govt websites / सभी जानकारी आधिकारिक वेबसाइट से सत्यापित करें</span>
+  </div>
+</footer>
+
+<script>
+  // Date
+  const d = new Date();
+  document.getElementById('dateDisplay').textContent = d.toLocaleDateString('hi-IN', {day:'numeric',month:'long',year:'numeric'});
+
+  // Scroll animations
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => {
+      if(e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i*50);
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.05});
+  document.querySelectorAll('.anim').forEach(el => obs.observe(el));
+
+  // Category filter
+  function filter(cat, btn) {
+    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active','v','y','r'));
+    btn.classList.add('active');
+    if(cat==='vacancy') btn.classList.add('v');
+    if(cat==='yojana') btn.classList.add('y');
+    if(cat==='result'||cat==='admit'||cat==='answer') btn.classList.add('r');
+
+    const cards = document.querySelectorAll('#postsList .post-card');
+    let visible = 0;
+    cards.forEach(c => {
+      if(cat==='all' || c.dataset.cat===cat) { c.classList.remove('hidden'); visible++; }
+      else c.classList.add('hidden');
+    });
+    document.getElementById('noPosts').style.display = visible===0?'block':'none';
+  }
+
+  function filterAll(cat, el) {
+    el.preventDefault && el.preventDefault();
+    const tabs = document.querySelectorAll('.ftab');
+    tabs.forEach(t => { if(t.textContent.toLowerCase().includes(cat)) t.click(); });
+  }
+
+  // Init
+  document.querySelectorAll('#postsList .post-card').forEach((c,i) => {
+    setTimeout(() => c.classList.add('in'), 200+i*60);
+  });
+</script>
+</body>
+</html>
